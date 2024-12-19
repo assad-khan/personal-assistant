@@ -1,7 +1,8 @@
 streamlit
 langchain
-openai
 langchain-openai
-uuid
 pypdf
-docx
+python-docx
+wikipedia-api
+serpapi
+duckduckgo-search
