@@ -1,5 +1,0 @@
-streamlit
-langchain
-openai
-langchain-openai
-uuid
