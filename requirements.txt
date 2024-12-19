@@ -4,3 +4,4 @@ openai
 langchain-openai
 uuid
 pypdf
+docx
