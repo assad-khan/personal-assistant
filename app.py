@@ -124,7 +124,7 @@ class LangchainToolManager:
                 )
             )
         
-        if 'Web Search (SerpAPI)' in st.session_state.selected_tool:
+        elif 'Web Search (SerpAPI)' in st.session_state.selected_tool:
             # SerpAPI Search Tool
             if os.environ.get("SERPAPI_API_KEY"):
                 search = SerpAPIWrapper()
@@ -136,7 +136,7 @@ class LangchainToolManager:
                     )
                 )
         
-        if 'DuckDuckGo Search' in st.session_state.selected_tool:
+        elif 'DuckDuckGo Search' in st.session_state.selected_tool:
             # DuckDuckGo Search Tool
             ddg_search = DuckDuckGoSearchRun()
             tools.append(
@@ -147,7 +147,7 @@ class LangchainToolManager:
                 )
             )
         
-        if 'Web Page Loader' in st.session_state.selected_tool:
+        elif 'Web Page Loader' in st.session_state.selected_tool:
             # Web Page Loader Tool
             tools.append(
                 Tool(
@@ -156,7 +156,7 @@ class LangchainToolManager:
                     description="Useful for loading and extracting text from web pages."
                 )
             )
-            
+           
         return tools
 
 class AIAssistant:
@@ -438,28 +438,24 @@ class AIAssistant:
         # Initialize LLM for agent
         llm = self.llm_providers[st.session_state.selected_llm]()
         
-        # Initialize agent
-        agent = initialize_agent(
-            tools, 
-            llm, 
-            agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-            verbose=True
-        )
-        
-        # Tool-specific modifications
-        # if st.session_state.selected_tool == 'Web Page Loader':
-        #     # If Web Page Loader is selected and URL is provided
-        #     webpage_url = st.session_state.get('webpage_url', '')
-        #     if webpage_url:
-        #         # Modify prompt to include URL context
-        #         prompt = f"URL: {webpage_url}\n\nQuery: {prompt}"
-        
-        # Run agent
-        try:
-            response = agent.run(prompt)
-            return response
-        except Exception as e:
-            return f"Error using tool: {str(e)}"
+        # Initialize agent only if tools are available
+        if tools:
+            agent = initialize_agent(
+                tools,
+                llm, 
+                agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+                verbose=True
+            )
+            
+            # Run agent
+            try:
+                response = agent.run(prompt)
+                return response
+            except Exception as e:
+                return f"Error using tool: {str(e)}"
+        else:
+            # If no tools are available, use standard LLM response
+            return llm.predict(prompt)
 
     def main(self):
         # Set custom styles
