@@ -6,3 +6,4 @@ python-docx
 wikipedia-api
 serpapi
 duckduckgo-search
+langchain_community
