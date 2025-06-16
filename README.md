@@ -4,6 +4,13 @@ An intelligent assistant built with **LangChain**, **OpenAI**, and **Streamlit**
 
 ---
 
+## 🖼️ Demo
+
+
+![AI Assistant Demo](thumbnail.png)
+
+---
+
 ## 🚀 Features
 
 * 💬 Chat with GPT-4 Mini (OpenAI) or local LLMs via Ollama
