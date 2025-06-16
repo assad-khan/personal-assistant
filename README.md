@@ -97,8 +97,16 @@ Enable tools from the sidebar. More can be added via `ToolManager`.
 
 ---
 
-## 📄 License
+## 📜 License
 
-This project is licensed under the MIT License.
+```
+© 2025 Asad Khan. All rights reserved.
+
+This project is not open for commercial use or redistribution without explicit permission from the author.
+
+If you wish to use, modify, or distribute this software, please contact:
+
+📧 asadpythondeveloper@gmail.com
+```
 
 ---
