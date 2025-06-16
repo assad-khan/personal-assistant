@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime
 
 # Langchain imports
-from langchain_openai import ChatOpenAI
+from langchain_ollama import OllamaLLM
 from langchain.schema import HumanMessage, AIMessage
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
@@ -24,6 +24,9 @@ from langchain.tools import DuckDuckGoSearchRun
 # Constants
 HISTORY_FILE = 'chat_history.json'
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
+
+from langchain_openai import ChatOpenAI
+ChatOpenAI.model_rebuild()
 
 def set_custom_styles():
     """Apply custom CSS styles to enhance UI."""
@@ -194,10 +197,7 @@ class AIAssistant:
         return ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
 
     def get_ollama_llm(self):
-        return ChatOpenAI(
-                model="ollama/llama3.2",
-                base_url="http://localhost:11434"
-            )
+        return OllamaLLM(model="llama3.2")
 
     def load_conversations(self):
         try:
